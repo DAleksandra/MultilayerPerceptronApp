@@ -1,0 +1,13 @@
+.dot {
+    height: 50px;
+    width: 50px;
+    text-align: center;
+    background-color: #bbb;
+    margin-right: 5px;
+    border-radius: 50%;
+    display: inline-block;
+  }
+
+  .layer {
+      margin-top: 100px;
+  }
