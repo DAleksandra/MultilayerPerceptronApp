@@ -59,3 +59,8 @@ C:\Users\maeka\Desktop\MultilayerPerceptron\MultilayerPerceptron.API\obj\Debug\n
 C:\Users\maeka\Desktop\MultilayerPerceptron\MultilayerPerceptron.API\obj\Debug\netcoreapp3.0\MultilayerPerceptron.API.csproj.CopyComplete
 C:\Users\maeka\Desktop\MultilayerPerceptron\MultilayerPerceptron.API\obj\Debug\netcoreapp3.0\MultilayerPerceptron.API.dll
 C:\Users\maeka\Desktop\MultilayerPerceptron\MultilayerPerceptron.API\obj\Debug\netcoreapp3.0\MultilayerPerceptron.API.pdb
+C:\Users\maeka\Desktop\MultilayerPerceptron\MultilayerPerceptron.API\bin\Debug\netcoreapp3.0\AutoMapper.Extensions.Microsoft.DependencyInjection.dll
+C:\Users\maeka\Desktop\MultilayerPerceptron\MultilayerPerceptron.API\bin\Debug\netcoreapp3.0\Microsoft.AspNetCore.JsonPatch.dll
+C:\Users\maeka\Desktop\MultilayerPerceptron\MultilayerPerceptron.API\bin\Debug\netcoreapp3.0\Microsoft.AspNetCore.Mvc.NewtonsoftJson.dll
+C:\Users\maeka\Desktop\MultilayerPerceptron\MultilayerPerceptron.API\bin\Debug\netcoreapp3.0\Newtonsoft.Json.dll
+C:\Users\maeka\Desktop\MultilayerPerceptron\MultilayerPerceptron.API\bin\Debug\netcoreapp3.0\Newtonsoft.Json.Bson.dll

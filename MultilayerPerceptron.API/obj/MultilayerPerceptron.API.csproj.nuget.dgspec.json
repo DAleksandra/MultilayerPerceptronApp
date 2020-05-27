@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "c:\\Users\\maeka\\Desktop\\MultilayerPerceptron\\MultilayerPerceptron.API\\MultilayerPerceptron.API.csproj": {}
+    "C:\\Users\\maeka\\Desktop\\MultilayerPerceptron\\MultilayerPerceptron.API\\MultilayerPerceptron.API.csproj": {}
   },
   "projects": {
-    "c:\\Users\\maeka\\Desktop\\MultilayerPerceptron\\MultilayerPerceptron.API\\MultilayerPerceptron.API.csproj": {
+    "C:\\Users\\maeka\\Desktop\\MultilayerPerceptron\\MultilayerPerceptron.API\\MultilayerPerceptron.API.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "c:\\Users\\maeka\\Desktop\\MultilayerPerceptron\\MultilayerPerceptron.API\\MultilayerPerceptron.API.csproj",
+        "projectUniqueName": "C:\\Users\\maeka\\Desktop\\MultilayerPerceptron\\MultilayerPerceptron.API\\MultilayerPerceptron.API.csproj",
         "projectName": "MultilayerPerceptron.API",
-        "projectPath": "c:\\Users\\maeka\\Desktop\\MultilayerPerceptron\\MultilayerPerceptron.API\\MultilayerPerceptron.API.csproj",
+        "projectPath": "C:\\Users\\maeka\\Desktop\\MultilayerPerceptron\\MultilayerPerceptron.API\\MultilayerPerceptron.API.csproj",
         "packagesPath": "C:\\Users\\maeka\\.nuget\\packages\\",
-        "outputPath": "c:\\Users\\maeka\\Desktop\\MultilayerPerceptron\\MultilayerPerceptron.API\\obj\\",
+        "outputPath": "C:\\Users\\maeka\\Desktop\\MultilayerPerceptron\\MultilayerPerceptron.API\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
@@ -48,6 +48,10 @@
             "AutoMapper.Extensions.Microsoft.DependencyInjection": {
               "target": "Package",
               "version": "[7.0.0, )"
+            },
+            "Microsoft.AspNetCore.Mvc.NewtonsoftJson": {
+              "target": "Package",
+              "version": "[3.0.0, )"
             },
             "Microsoft.EntityFrameworkCore": {
               "target": "Package",

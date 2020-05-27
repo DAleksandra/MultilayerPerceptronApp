@@ -1,8 +1,8 @@
 import { Network } from '../_models/network';
 import { Layer } from '../_models/layer';
 import { Neuron } from '../_models/neuron';
-import { Component, TemplateRef, OnInit } from '@angular/core';
-import { BsModalService, BsModalRef } from 'ngx-bootstrap/modal';
+import { Component, TemplateRef, OnInit, ElementRef, ViewChild } from '@angular/core';
+import { BsModalService, BsModalRef, ModalDirective } from 'ngx-bootstrap/modal';
 
 @Component({
   selector: 'app-network',
@@ -15,6 +15,7 @@ export class NetworkComponent implements OnInit {
   layer: Layer = new Layer();
   content: string = "Nothing";
   modalRef: any;
+
   constructor(private modalService: BsModalService) { }
 
   ngOnInit() {
@@ -56,11 +57,28 @@ export class NetworkComponent implements OnInit {
     this.modalRef = this.modalService.show(template);
   }
 
-  addLayer() {
+  openModalAddLayer(template: TemplateRef<any>) {
+    this.modalRef = this.modalService.show(template);
+  }
 
+
+  addLayer() {
+    this.modalRef.hide();
   }
 
   addNeuron() {
+    this.modalRef.hide();
+  }
 
+  deleteLayer(layer: Layer) {
+
+  }
+
+  deleteNeuron(neuron: Neuron) {
+
+  }
+
+  editNeuron() {
+    this.modalRef.hide();
   }
 }

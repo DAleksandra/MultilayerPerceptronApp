@@ -1,12 +1,12 @@
 <div class="container mt-5">
-  <button type="button" class="btn btn-primary" (click)="addLayer()">Add layer</button>
-  <button type="button" class="btn btn-danger mr-5">Delete layer</button>
+  <button type="button" class="btn btn-primary" (click)="openModalAddLayer(layerAdd)">Add layer</button>
   <h3>Inputs: </h3>
   <p></p>
   <div class="layer" *ngFor="let layer of network.layers">
     <div class="row">
       <div class="col-2">
         <p>Layer: {{layer.layerNumber}} <button  (click)="openModalAddNeuron(neuronAdd, layer)" type="button" class="btn btn-primary">Add neuron</button></p>
+        <button type="button" class="btn btn-danger mr-5" (click)="deleteLayer(layer)">Delete layer</button>
       </div>
       <div class="col-10">
         <div type="button" class="dot btn-primary"  
@@ -29,8 +29,8 @@
   <div class="modal-body">
     <h4>Output value: {{neuron.value}}</h4>
     <h4>Weight: {{neuron.weight}}</h4>
-    <button type="button" class="btn btn-primary mr-5">Edit neuron</button>
-    <button type="button" class="btn btn-danger">Delete neuron</button>
+    <button type="button" class="btn btn-primary mr-5" (click)="editNeuron()">Edit neuron</button>
+    <button type="button" class="btn btn-danger" (click)="deleteNeuron(neuron)">Delete neuron</button>
   </div>
 </ng-template>
 
@@ -47,3 +47,15 @@
   </div>
 </ng-template>
 
+<ng-template #layerAdd>
+  <div class="modal-header">
+    <h4 class="modal-title pull-left">Add Layer</h4>
+    <button type="button" class="close pull-right" aria-label="Close" (click)="modalRef.hide()">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    <button type="button" class="btn btn-primary mr-5" (click)="addLayer()">Add layer</button>
+    <button type="button" (click)="modalRef.hide()" class="btn btn-danger">Cancel</button>
+  </div>
+</ng-template>

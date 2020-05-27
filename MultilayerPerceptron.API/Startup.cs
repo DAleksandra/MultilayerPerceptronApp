@@ -14,6 +14,8 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using MultilayerPerceptron.API.Data;
+using Newtonsoft.Json.Serialization;
+using Newtonsoft.Json;
 
 namespace MultilayerPerceptron.API
 {
@@ -37,8 +39,13 @@ namespace MultilayerPerceptron.API
             services.AddScoped<INetworkRepository, NetworkRepository>();
             services.AddAutoMapper(typeof(Startup));
             
-            
-            services.AddControllers();
+            services.AddControllers().AddNewtonsoftJson(options =>
+                {
+                    // Use the default property (Pascal) casing
+                    options.SerializerSettings.ContractResolver = new CamelCasePropertyNamesContractResolver();
+                    options.SerializerSettings.ReferenceLoopHandling = ReferenceLoopHandling.Ignore;
+                });
+          
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

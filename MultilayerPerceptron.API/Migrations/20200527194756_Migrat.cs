@@ -2,7 +2,7 @@
 
 namespace MultilayerPerceptron.API.Migrations
 {
-    public partial class InitialMigration : Migration
+    public partial class Migrat : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -25,8 +25,7 @@ namespace MultilayerPerceptron.API.Migrations
                     Id = table.Column<int>(type: "INTEGER", nullable: false)
                         .Annotation("Sqlite:Autoincrement", true),
                     LayerNumber = table.Column<int>(type: "INTEGER", nullable: false),
-                    NetworkId = table.Column<int>(type: "INTEGER", nullable: true),
-                    NeworkId = table.Column<int>(type: "INTEGER", nullable: false)
+                    NetworkId = table.Column<int>(type: "INTEGER", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -36,7 +35,7 @@ namespace MultilayerPerceptron.API.Migrations
                         column: x => x.NetworkId,
                         principalTable: "Networks",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
+                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateTable(
