@@ -8,8 +8,8 @@ using MultilayerPerceptron.API.Data;
 namespace MultilayerPerceptron.API.Migrations
 {
     [DbContext(typeof(DataContext))]
-    [Migration("20200527194756_Migrat")]
-    partial class Migrat
+    [Migration("20200528190010_First")]
+    partial class First
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -33,7 +33,7 @@ namespace MultilayerPerceptron.API.Migrations
 
                     b.HasIndex("NetworkId");
 
-                    b.ToTable("Layer");
+                    b.ToTable("Layers");
                 });
 
             modelBuilder.Entity("MultilayerPerceptron.API.Models.Network", b =>
@@ -66,7 +66,7 @@ namespace MultilayerPerceptron.API.Migrations
 
                     b.HasIndex("LayerId");
 
-                    b.ToTable("Neuron");
+                    b.ToTable("Neurons");
                 });
 
             modelBuilder.Entity("MultilayerPerceptron.API.Models.ValuePair", b =>

@@ -2,7 +2,7 @@
 
 namespace MultilayerPerceptron.API.Migrations
 {
-    public partial class Migrat : Migration
+    public partial class First : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -19,7 +19,7 @@ namespace MultilayerPerceptron.API.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "Layer",
+                name: "Layers",
                 columns: table => new
                 {
                     Id = table.Column<int>(type: "INTEGER", nullable: false)
@@ -29,9 +29,9 @@ namespace MultilayerPerceptron.API.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Layer", x => x.Id);
+                    table.PrimaryKey("PK_Layers", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_Layer_Networks_NetworkId",
+                        name: "FK_Layers_Networks_NetworkId",
                         column: x => x.NetworkId,
                         principalTable: "Networks",
                         principalColumn: "Id",
@@ -60,7 +60,7 @@ namespace MultilayerPerceptron.API.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "Neuron",
+                name: "Neurons",
                 columns: table => new
                 {
                     Id = table.Column<int>(type: "INTEGER", nullable: false)
@@ -71,23 +71,23 @@ namespace MultilayerPerceptron.API.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Neuron", x => x.Id);
+                    table.PrimaryKey("PK_Neurons", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_Neuron_Layer_LayerId",
+                        name: "FK_Neurons_Layers_LayerId",
                         column: x => x.LayerId,
-                        principalTable: "Layer",
+                        principalTable: "Layers",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateIndex(
-                name: "IX_Layer_NetworkId",
-                table: "Layer",
+                name: "IX_Layers_NetworkId",
+                table: "Layers",
                 column: "NetworkId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Neuron_LayerId",
-                table: "Neuron",
+                name: "IX_Neurons_LayerId",
+                table: "Neurons",
                 column: "LayerId");
 
             migrationBuilder.CreateIndex(
@@ -99,13 +99,13 @@ namespace MultilayerPerceptron.API.Migrations
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
-                name: "Neuron");
+                name: "Neurons");
 
             migrationBuilder.DropTable(
                 name: "ValuePairs");
 
             migrationBuilder.DropTable(
-                name: "Layer");
+                name: "Layers");
 
             migrationBuilder.DropTable(
                 name: "Networks");

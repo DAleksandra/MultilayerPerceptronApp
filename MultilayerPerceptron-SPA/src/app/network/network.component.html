@@ -27,10 +27,23 @@
     </button>
   </div>
   <div class="modal-body">
-    <h4>Output value: {{neuron.value}}</h4>
-    <h4>Weight: {{neuron.weight}}</h4>
-    <button type="button" class="btn btn-primary mr-5" (click)="editNeuron()">Edit neuron</button>
-    <button type="button" class="btn btn-danger" (click)="deleteNeuron(neuron)">Delete neuron</button>
+    <form (ngSubmit)="editNeuron()" #editNeuronForm="ngForm">
+      <div class="form-group">
+        <label class="control-label" for="value">Value:</label>
+        <input type="number" id="value" class="form-control"  name="value"
+        required #value="ngModel" [(ngModel)]="neuron.value">
+        <div *ngIf="value.touched && value.invalid" class="text-danger">You need to provide value.</div>
+      </div>
+      <div class="form-group">
+        <label class="control-label" for="weight">Weight:</label>
+        <input type="number" id="weight" class="form-control"  name="weight"
+        required #weight="ngModel" [(ngModel)]="neuron.weight">
+        <div class="text-danger" *ngIf="weight.invalid && weight.touched" >You need to provide weight.</div>
+      </div>
+    
+      <button type="submit" [disabled]="!editNeuronForm.valid" class="btn btn-primary mr-5">Edit Neuron</button>
+      <button type="button" class="btn btn-danger" (click)="deleteNeuron(neuron)">Delete neuron</button>
+    </form>
   </div>
 </ng-template>
 
@@ -42,8 +55,23 @@
     </button>
   </div>
   <div class="modal-body">
-    <button type="button" class="btn btn-primary mr-5" (click)="addNeuron()">Add neuron</button>
-    <button type="button" (click)="modalRef.hide()" class="btn btn-danger">Cancel</button>
+    <form (ngSubmit)="addNeuron()" #addNeuronForm="ngForm">
+      <div class="form-group">
+        <label class="control-label" for="value">Value:</label>
+        <input type="number" id="value" class="form-control"  name="value"
+        required #value="ngModel" [(ngModel)]="neuron.value">
+        <div *ngIf="value.touched && value.invalid" class="text-danger">You need to provide value.</div>
+      </div>
+      <div class="form-group">
+        <label class="control-label" for="weight">Weight:</label>
+        <input type="number" id="weight" class="form-control"  name="weight"
+        required #weight="ngModel" [(ngModel)]="neuron.weight">
+        <div class="text-danger" *ngIf="weight.invalid && weight.touched" >You need to provide weight.</div>
+      </div>
+    
+      <button type="submit" [disabled]="!addNeuronForm.valid" class="btn btn-primary mr-5">Add Neuron</button>
+      <button type="button" (click)="modalRef.hide()" class="btn btn-danger">Cancel</button>
+    </form>
   </div>
 </ng-template>
 

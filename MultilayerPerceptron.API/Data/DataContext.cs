@@ -11,7 +11,7 @@ namespace MultilayerPerceptron.API.Data
 
         public DbSet<Network> Networks { get; set; }
         public DbSet<Layer> Layers { get; set; }
-        public DbSet<Layer> Neurons { get; set; }
+        public DbSet<Neuron> Neurons { get; set; }
         public DbSet<ValuePair> ValuePairs { get; set; }
    
     }

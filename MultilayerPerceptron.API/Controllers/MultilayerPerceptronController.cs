@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 using AutoMapper;
 using Microsoft.AspNetCore.Mvc;
@@ -28,13 +29,11 @@ namespace MultilayerPerceptron.API.Controllers
 
             var neuron = _mapper.Map<Neuron>(neuronToAdd);
 
-            
-
             layer.Neurons.Add(neuron);
+
 
             if(await _repo.SaveAll())
             {
-                var network = _repo.GetNetwork(networkId);
                 return Ok();
             }
 
@@ -66,18 +65,17 @@ namespace MultilayerPerceptron.API.Controllers
             var network = _repo.Add(networkToCreate);
 
              if(await _repo.SaveAll()){
-
-                return Ok();
+                 return CreatedAtRoute("GetNetwork", new {id = network.Id}, network);
             }
 
             return BadRequest("Could not add the network.");
 
         }
 
-        [HttpDelete("neuron/{id}")]
-        public async Task<IActionResult> DeleteNeuron(int id)
+        [HttpDelete("{networkId}/neuron/{id}")]
+        public async Task<IActionResult> DeleteNeuron(int id, int networkId)
         {
-            var neuron = _repo.GetNeuron(id);
+            var neuron = await _repo.GetNeuron(id);
 
             _repo.Delete(neuron);
 
@@ -89,15 +87,29 @@ namespace MultilayerPerceptron.API.Controllers
 
         }
 
-        [HttpDelete("layer/{id}")]
-        public async Task<IActionResult> DeleteLayer(int id)
+        [HttpDelete("{networkId}/layer/{id}")]
+        public async Task<IActionResult> DeleteLayer(int id, int networkId)
         {
-            var layer = _repo.GetLayer(id);
+            var layer = await _repo.GetLayer(id);
 
             _repo.Delete(layer);
 
             if(await _repo.SaveAll())
-                return Ok();
+            {
+                var network = await _repo.GetNetwork(networkId);
+
+                network.Layers.Where(x => x.LayerNumber > layer.LayerNumber).ToList().ForEach(x => x.LayerNumber -= 1);
+
+                if(await _repo.SaveAll())
+                {
+                    return Ok();
+                }
+                else 
+                {
+                    return BadRequest("Failed to delete layer.");
+                }
+            }
+
 
             return BadRequest("Failed to delete layer.");
         }
@@ -105,7 +117,7 @@ namespace MultilayerPerceptron.API.Controllers
         [HttpDelete("network/{id}")]
         public async Task<IActionResult> DeleteNetwork(int id)
         {
-            var network = _repo.GetNetwork(id);
+            var network = await _repo.GetNetwork(id);
 
             _repo.Delete(network);
 
@@ -115,14 +127,12 @@ namespace MultilayerPerceptron.API.Controllers
             return BadRequest("Failed to delete network.");
         }
 
-        [HttpPut("neuron/{id}")]
-        public async Task<IActionResult> UpdateNeuron(int id, NeuronForUpdateDto neuronForUpdate)
+        [HttpPut("{networkId}/neuron/{id}")]
+        public async Task<IActionResult> UpdateNeuron(int id, NeuronForUpdateDto neuronForUpdate, int networkId)
         {
-            var neuronFromRepo = _repo.GetNeuron(id);
+            var neuronFromRepo = await _repo.GetNeuron(id);
 
             _mapper.Map(neuronForUpdate, neuronFromRepo);
-
-            var network = _repo.GetNetwork(neuronFromRepo.Id);
 
             if(await _repo.SaveAll())
             {
@@ -132,7 +142,7 @@ namespace MultilayerPerceptron.API.Controllers
             return BadRequest("Could not update neuron.");
         }
 
-        [HttpGet("{id}")]
+        [HttpGet("{id}", Name="GetNetwork")]
         public async Task<IActionResult> GetNetwork(int id)
         {
             var network = await _repo.GetNetwork(id);

@@ -51,11 +51,13 @@ namespace MultilayerPerceptron.API.Data
             return layer;
         }
 
-        public Task<Layer> GetNeuron(int id)
+        public Task<Neuron> GetNeuron(int id)
         {
             var neuron = _context.Neurons.Where(x => x.Id == id).FirstOrDefaultAsync();
 
             return neuron;
         }
+
+
     }
 }

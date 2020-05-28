@@ -31,7 +31,7 @@ namespace MultilayerPerceptron.API.Migrations
 
                     b.HasIndex("NetworkId");
 
-                    b.ToTable("Layer");
+                    b.ToTable("Layers");
                 });
 
             modelBuilder.Entity("MultilayerPerceptron.API.Models.Network", b =>
@@ -64,7 +64,7 @@ namespace MultilayerPerceptron.API.Migrations
 
                     b.HasIndex("LayerId");
 
-                    b.ToTable("Neuron");
+                    b.ToTable("Neurons");
                 });
 
             modelBuilder.Entity("MultilayerPerceptron.API.Models.ValuePair", b =>
