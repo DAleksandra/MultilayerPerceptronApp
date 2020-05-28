@@ -4,6 +4,7 @@ import { Neuron } from '../_models/neuron';
 import { Component, TemplateRef, OnInit, ElementRef, ViewChild } from '@angular/core';
 import { BsModalService, BsModalRef, ModalDirective } from 'ngx-bootstrap/modal';
 import { NetworkService } from '../_services/network.service';
+import { AlertifyService } from '../_services/alertify.service';
 
 @Component({
   selector: 'app-network',
@@ -17,7 +18,7 @@ export class NetworkComponent implements OnInit {
   content: string = "Nothing";
   modalRef: any;
 
-  constructor(private modalService: BsModalService, private networkService: NetworkService) { }
+  constructor(private modalService: BsModalService, private networkService: NetworkService, private alertify: AlertifyService) { }
 
   ngOnInit() {
     this.networkService.getNetwork(1).subscribe(x => {
@@ -63,10 +64,14 @@ export class NetworkComponent implements OnInit {
     }
     
     this.networkService.addLayer(this.network.id, this.layer).subscribe(x => {
-      console.log("Layer added");
+      this.alertify.success("Layer added.");
       this.networkService.getNetwork(this.network.id).subscribe(x => {
         this.network = x;
+      }, error => {
+        this.alertify.error("Cannot reload network.");
       });
+    }, error => {
+      this.alertify.error("Cannot add layer.");
     });    
     this.modalRef.hide();
   }
@@ -76,7 +81,11 @@ export class NetworkComponent implements OnInit {
       console.log("Neuron added");
       this.networkService.getNetwork(this.network.id).subscribe(x => {
         this.network = x;
+      }, error => {
+        this.alertify.error("Cannot reload network.");
       });
+    }, error => {
+      this.alertify.error("Cannot add neuron.");
     });
     this.modalRef.hide();
   }
@@ -86,7 +95,11 @@ export class NetworkComponent implements OnInit {
       console.log("Layer deleted");
       this.networkService.getNetwork(this.network.id).subscribe(x => {
         this.network = x;
+      }, error => {
+        this.alertify.error("Cannot reload network.");
       });
+    }, error => {
+      this.alertify.error("Cannot delete layer.");
     });
   }
 
@@ -95,7 +108,11 @@ export class NetworkComponent implements OnInit {
       console.log("Neuron deleted");
       this.networkService.getNetwork(this.network.id).subscribe(x => {
         this.network = x;
+      }, error => {
+        this.alertify.error("Cannot reload network.");
       });
+    }, error => {
+      this.alertify.error("Cannot delete neuron.");
     });
     this.modalRef.hide();
   }
@@ -106,9 +123,11 @@ export class NetworkComponent implements OnInit {
       console.log("Neuron edited.");
       this.networkService.getNetwork(this.network.id).subscribe(x => {
         this.network = x;
+      }, error => {
+        this.alertify.error("Cannot reload network.");
       });
     }, error => {
-      console.log("Cannot edit neuron");
+      this.alertify.error("Cannot edit neuron.");
     });
   }
 }
